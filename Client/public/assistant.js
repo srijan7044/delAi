@@ -140,7 +140,7 @@
   const loadAssistant = async () => {
     try {
       const res = await fetch(
-        `http://localhost:8000/api/assistant/config/${userId}`,
+        `https://delaiserver.onrender.com/api/assistant/config/${userId}`,
       );
 
       const data = await res.json();
@@ -393,7 +393,7 @@
 
     setTimeout(async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/assistant/ask", {
+        const res = await fetch("https://delaiserver.onrender.com/api/assistant/ask", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
