@@ -125,28 +125,28 @@ function Builder({user , setUser}) {
      const embedCode = `<script src="${CLIENT_URL}/assistant.js" data-user-id="${user?._id}"></script>`;
 
   return (
-    <div className='min-h-screen bg-[#f7f8fc] px-4 py-8'>
+    <div className='min-h-screen app-bg px-4 py-8'>
       <div className='max-w-4xl mx-auto'>
         <div className='mb-8'>
-          <h2 className='text-3xl font-bold text-[#081028]'>
+          <h2 className='text-3xl font-bold text-main'>
             Assistant Builder
           </h2>
-          <p className='text-gray-500 mt-1'> Customize your virtual
+          <p className='text-muted mt-1'> Customize your virtual
             assistant</p>
         </div>
 
         {user.isSetupComplete && !editAssistant &&(
-          <div className='bg-white rounded-3xl border border-gray-100 shadow-sm p-6 mb-6'>
+          <div className='surface rounded-3xl border border-transparent shadow-sm p-6 mb-6'>
 
-           <p className="text-sm text-gray-400">
+              <p className="text-sm text-muted">
                 Assistant
               </p>
 
-              <h2 className="text-3xl font-bold text-[#081028] mt-1">
+              <h2 className="text-3xl font-bold text-main mt-1">
                 {user.assistantName}
               </h2>
 
-              <p className="text-gray-500 mt-3 leading-7">
+              <p className="text-muted mt-3 leading-7">
                 Your assistant is ready
                 to use on your website.
               </p>
@@ -154,32 +154,32 @@ function Builder({user , setUser}) {
               <div className='grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6'>
 
 
-                <div className='rounded-2xl border border-gray-100 bg-[#f8fafc] p-4'>
+                <div className='rounded-2xl surface p-4'>
                   
-                  <p className='text-sm text-gray-400'>Current Plan</p>
-                  <h2 className='text-xl font-bold text-[#081028] mt-1 capitalize'>{user?.plan}</h2>
+                  <p className='text-sm text-muted'>Current Plan</p>
+                  <h2 className='text-xl font-bold text-main mt-1 capitalize'>{user?.plan}</h2>
                 </div>
 
 
-                <div className='rounded-2xl border border-gray-100 bg-[#f8fafc] p-4'>
+                <div className='rounded-2xl surface p-4'>
                   
-                  <p className='text-sm text-gray-400'>Gemini Status</p>
+                  <p className='text-sm text-muted'>Gemini Status</p>
                   <h2 className={`text-xl font-bold mt-1 capitalize ${user?.geminiStatus === "active"
-                      ? "text-emerald-600"
+                      ? "text-emerald-400"
                       : user?.geminiStatus === "invalid"
-                        ? "text-red-500"
-                        : "text-amber-500"
+                        ? "text-red-400"
+                        : "text-amber-400"
                     }`}>{user?.geminiStatus}</h2>
                 </div>
 
-                 <div className='rounded-2xl border border-gray-100 bg-[#f8fafc] p-4'>
-                  
-                  <p className='text-sm text-gray-400'>{user?.plan === "free"
-                      ? "Messages Left"
-                      : "Plan Expiry"}</p>
-                  <h2 className='text-xl font-bold text-[#081028] mt-1 capitalize'>{user?.plan === "free"
-                      ? remainingMessages
-                      : `${remainingDays} Days`}</h2>
+                 <div className='rounded-2xl surface p-4'>
+                   
+                  <p className='text-sm text-muted'>{user?.plan === "free"
+                    ? "Messages Left"
+                    : "Plan Expiry"}</p>
+                  <h2 className='text-xl font-bold text-main mt-1 capitalize'>{user?.plan === "free"
+                    ? remainingMessages
+                    : `${remainingDays} Days`}</h2>
                 </div>
               </div>
 
@@ -213,7 +213,7 @@ function Builder({user , setUser}) {
                   </pre>
                 </div>
 
-                <p className='text-sm font-medium text-[#081028] mb-3 mt-3'>Embed Code</p>
+                <p className='text-sm font-medium text-main mb-3 mt-3'>Embed Code</p>
               </div>
 
               <div className='relative'>
@@ -221,7 +221,7 @@ function Builder({user , setUser}) {
                 <button onClick={()=>{
                   navigator.clipboard.writeText(embedCode);
                   toast.success("Copied")
-                }} className='absolute top-4 right-4 w-10 h-10 rounded-xl bg-white flex items-center justify-center'><FiCopy/></button>
+                }} className='absolute top-4 right-4 w-10 h-10 rounded-xl surface flex items-center justify-center'><FiCopy/></button>
               </div>
 
 
@@ -235,54 +235,54 @@ function Builder({user , setUser}) {
 
         {editAssistant && <div className='space-y-6'>
 
-          <div className='bg-white rounded-3xl border border-gray-100 shadow-sm p-6'>
-            <h2 className='text-lg font-semibold mb-5'>Basic Information</h2>
+          <div className='surface rounded-3xl border border-transparent shadow-sm p-6'>
+            <h2 className='text-lg font-semibold mb-5 text-main'>Basic Information</h2>
 
             <div className='space-y-4'>
               <input type="text" 
               onChange={(e)=>setAssistantName(e.target.value)}
               value={assistantName}
               placeholder="Assistant Name"
-              className="w-full border border-gray-200 rounded-2xl px-4 py-3" />
+              className="w-full border border-transparent rounded-2xl px-4 py-3 bg-[rgba(255,255,255,0.02)] text-main placeholder:text-muted" />
 
               <input type="text" 
               onChange={(e)=>setBusinessName(e.target.value)}
               value={businessName}
               placeholder="Business Name"
-              className="w-full border border-gray-200 rounded-2xl px-4 py-3" />
+              className="w-full border border-transparent rounded-2xl px-4 py-3 bg-[rgba(255,255,255,0.02)] text-main placeholder:text-muted" />
 
               <input type="text" 
               onChange={(e)=>setBusinessType(e.target.value)}
               value={businessType}
               placeholder="Business Type"
-              className="w-full border border-gray-200 rounded-2xl px-4 py-3" />
+              className="w-full border border-transparent rounded-2xl px-4 py-3 bg-[rgba(255,255,255,0.02)] text-main placeholder:text-muted" />
 
               <textarea type="text" 
               rows={4}
               onChange={(e)=>setBusinessDescription(e.target.value)}
               value={businessDescription}
               placeholder="Business Description"
-              className="w-full border border-gray-200 rounded-2xl px-4 py-3 resize-none" />
+              className="w-full border border-transparent rounded-2xl px-4 py-3 resize-none bg-[rgba(255,255,255,0.02)] text-main placeholder:text-muted" />
 
 
             </div>
           </div>
 
-          <div className='bg-white rounded-3xl border border-gray-100 shadow-sm p-6'>
-            <h2 className='text-lg font-semibold mb-5'>
+          <div className='surface rounded-3xl border border-transparent shadow-sm p-6'>
+            <h2 className='text-lg font-semibold mb-5 text-main'>
               Appearance
             </h2>
 
             <div>
-              <label  className='text-sm text-gray-600 mb-3 block'>Theme</label>
+              <label  className='text-sm text-muted mb-3 block'>Theme</label>
 
               <div className='grid grid-cols-2 sm:grid-cols-4 gap-3'>
                 {THEMES.map((item)=>(
                   <button key={item}
                   onClick={()=>setTheme(item)}
-                   className={`py-3 rounded-2xl border-2 capitalize ${theme === item
-                        ? "border-purple-500 bg-purple-50 text-purple-700"
-                        : "border-gray-200"
+                      className={`py-3 rounded-2xl border-2 capitalize ${theme === item
+                        ? "border-[rgba(14,165,164,0.7)] bg-[rgba(14,165,164,0.06)] text-main"
+                        : "border-transparent bg-[transparent] text-muted"
                         }`}>{item}
                   </button>
                 ))}
@@ -291,15 +291,15 @@ function Builder({user , setUser}) {
 
 
             <div className='mt-6'>
-              <label  className='text-sm text-gray-600 mb-3 block'>Assistant Tone</label>
+              <label  className='text-sm text-muted mb-3 block'>Assistant Tone</label>
 
               <div className='grid grid-cols-2 sm:grid-cols-3 gap-3'>
                 {TONES.map((item)=>(
                   <button key={item}
                   onClick={()=>setTone(item)}
-                   className={`py-3 rounded-2xl border-2 capitalize ${tone === item
-                        ? "border-purple-500 bg-purple-50 text-purple-700"
-                        : "border-gray-200"
+                      className={`py-3 rounded-2xl border-2 capitalize ${tone === item
+                        ? "border-[rgba(14,165,164,0.7)] bg-[rgba(14,165,164,0.06)] text-main"
+                        : "border-transparent bg-[transparent] text-muted"
                         }`}>{item}
                   </button>
                 ))}
@@ -309,13 +309,13 @@ function Builder({user , setUser}) {
           </div>
 
 
-          <div className='bg-white rounded-3xl border border-gray-100 shadow-sm p-6'>
+          <div className='surface rounded-3xl border border-transparent shadow-sm p-6'>
             <div className='flex items-center justify-between mb-5 gap-4 flex-wrap'>
               <div>
                 <h2 className='text-lg font-semibold'>
                   Gemini API KEY
                 </h2>
-                <p className='text-sm text-gray-400 mt-1'>
+                <p className='text-sm text-muted mt-1'>
                   Add your Gemini API key to power your assistant
                 </p>
               </div>
@@ -323,7 +323,7 @@ function Builder({user , setUser}) {
               <a href="https://aistudio.google.com/app/apikey"
               target='_blank'
               rel='noopener noreferrer'
-              className='px-4 py-2 rounded-xl bg-gradient-to-r from-purple-500 to-emerald-500 text-white text-sm font-medium hover:scale-[1.02] transition-all cursor-pointer'>
+              className='px-4 py-2 rounded-xl btn-primary text-sm font-medium hover:scale-[1.02] transition-all cursor-pointer'>
                 Get API KEY
               </a>
             </div>
@@ -332,50 +332,50 @@ function Builder({user , setUser}) {
             placeholder="AIza..."
             onChange={(e)=>setGeminiApiKey(e.target.value)}
             value={geminiApiKey}
-            className="w-full border border-gray-200 rounded-2xl px-4 py-3" />
+            className="w-full border border-transparent rounded-2xl px-4 py-3 bg-[rgba(255,255,255,0.02)] text-main placeholder:text-muted" />
 
-            <p className='text-xs text-gray-400 mt-3 leading-6'>
-               Your API key is securely stored and only used for generating AI responses.
+            <p className='text-xs text-muted mt-3 leading-6'>
+              Your API key is securely stored and only used for generating AI responses.
             </p>
           </div>
 
-          <div className='bg-white rounded-3xl border border-gray-100 shadow-sm p-6'>
+          <div className='surface rounded-3xl border border-transparent shadow-sm p-6'>
             <div className='flex items-center justify-between mb-5 flex-wrap'>
               <div>
                 <h2 className='text-lg font-semibold'>Navigation Pages</h2>
-                <p className='text-sm text-gray-400'>
+                <p className='text-sm text-muted'>
                   Assistant can redirect users
                 </p>
               </div>
 
-              <button onClick={addPage} className='flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-purple-500 to-emerald-500 text-white text-sm'>
+              <button onClick={addPage} className='flex items-center gap-2 px-4 py-2 rounded-xl btn-primary text-white text-sm'>
                 <FiPlus/>Add
               </button>
             </div>
 
-            <div className='grid grid-cols-1 sm:grid-cols-3 gap-3'>
-              <input type="text" placeholder='Page Name' className='border border-gray-200 rounded-2xl px-4 py-3'
+              <div className='grid grid-cols-1 sm:grid-cols-3 gap-3'>
+              <input type="text" placeholder='Page Name' className='border border-transparent rounded-2xl px-4 py-3 bg-[rgba(255,255,255,0.02)] text-main placeholder:text-muted'
               onChange={(e)=>setPageName(e.target.value)}
               value={[pageName]}/>
 
-              <input type="text" placeholder='/pricing' className='border border-gray-200 rounded-2xl px-4 py-3'
+              <input type="text" placeholder='/pricing' className='border border-transparent rounded-2xl px-4 py-3 bg-[rgba(255,255,255,0.02)] text-main placeholder:text-muted'
               onChange={(e)=>setPagePath(e.target.value)}
               value={[pagePath]}/>
 
-              <input type="text" placeholder='Pricing  Plan' className='border border-gray-200 rounded-2xl px-4 py-3'
+              <input type="text" placeholder='Pricing  Plan' className='border border-transparent rounded-2xl px-4 py-3 bg-[rgba(255,255,255,0.02)] text-main placeholder:text-muted'
               onChange={(e)=>setPageKeywords(e.target.value)}
               value={[pageKeywords]}/>
             </div>
 
-            <div className='mt-5 space-y-3'>
+              <div className='mt-5 space-y-3'>
               {
                 pages.map((page,index)=>(
                   <div key={index}
-                  className='flex items-center justify-between border border-gray-100 rounded-2xl p-4'>
+                  className='flex items-center justify-between surface rounded-2xl p-4'>
 
                     <div>
                       <p className='font-medium'>{page.name}</p>
-                      <p className='text-sm text-gray-400'>{page.path}</p>
+                      <p className='text-sm text-muted'>{page.path}</p>
                   
                     </div>
                     <button onClick={()=>removePage(index)} className='text-red-500'>
@@ -394,7 +394,7 @@ function Builder({user , setUser}) {
         !businessName  ||
         !businessType ||
         !businessDescription ||
-        !geminiApiKey} className='w-full h-14 rounded-2xl bg-gradient-to-r from-purple-500 to-emerald-500 text-white font-semibold disabled:opacity-50 disabled:cursor-not-allowed'>
+        !geminiApiKey} className='w-full h-14 rounded-2xl btn-primary font-semibold disabled:opacity-50 disabled:cursor-not-allowed'>
             {
               loading ? "Saving..." : user.isSetupComplete ? "Update Assistant" : "Save Assistant"
             }

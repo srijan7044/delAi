@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { FiLogOut, FiMenu, FiX } from "react-icons/fi";
 import axios from "axios";
@@ -8,6 +8,12 @@ import toast from "react-hot-toast";
 function Navbar({ user, setUser }) {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const isActive = (path) => {
+    if (!location || !location.pathname) return false;
+    return location.pathname === path || location.pathname.startsWith(path + "/");
+  };
 
   const handleLogout = async () => {
     try {
@@ -23,7 +29,7 @@ function Navbar({ user, setUser }) {
     }
   };
   return (
-    <div className="sticky top-0 z-50 backdrop-blur-xl bg-white/80 border-b border-orange-100">
+    <div className="sticky top-0 z-50 nav-surface">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
         <div
           onClick={() => navigate("/")}
@@ -31,7 +37,7 @@ function Navbar({ user, setUser }) {
         >
           <img src={logo} alt="logo" className="h-9 w-auto object-contain" />
 
-          <h1 className="font-bold text-xl text-gray-700 leading-none">
+          <h1 className="font-bold text-xl text-main leading-none">
             del
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-emerald-500">
               Ai
@@ -43,19 +49,19 @@ function Navbar({ user, setUser }) {
           <div className="hidden md:flex items-center gap-3">
             <button
               onClick={() => navigate("/builder")}
-              className="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-500 to-emerald-500 text-white text-sm font-medium shadow-md hover:scale-[1.02] transition-all cursor-pointer"
+              className={`px-4 py-2 rounded-xl text-sm shadow-md hover:scale-[1.02] transition-all cursor-pointer ${isActive("/builder") ? "btn-primary" : "btn-secondary"}`}
             >
               Builder
             </button>
 
             <button
               onClick={() => navigate("/billing")}
-              className="px-4 py-2 rounded-xl border border-orange-100 bg-white text-gray-700 text-sm font-medium hover:border-purple-300 transition-all cursor-pointer"
+              className={`px-4 py-2 rounded-xl text-sm font-medium transition-all cursor-pointer ${isActive("/billing") ? "btn-primary" : "btn-secondary"}`}
             >
               Billing
             </button>
 
-            <div className="flex items-center gap-3 px-4 py-2 rounded-2xl bg-white border border-orange-100 shadow-sm">
+            <div className="flex items-center gap-3 px-4 py-2 rounded-2xl surface border border-transparent shadow-sm">
               <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-emerald-500 flex items-center justify-center flex-shrink-0">
                 <span className="text-white text-sm font-bold">
                   {user?.name.charAt(0).toUpperCase()}
@@ -63,15 +69,15 @@ function Navbar({ user, setUser }) {
               </div>
 
               <div className="max-w-[140px]">
-                <p className="text-sm font-semibold text-gray-800 truncate">
+                <p className="text-sm font-semibold text-main truncate">
                   {user.name}
                 </p>
 
-                <p className="text-xs text-gray-400 truncate">{user.email}</p>
+                <p className="text-xs text-muted truncate">{user.email}</p>
               </div>
               <button
                 onClick={handleLogout}
-                className="ml-1 text-gray-400 hover:text-red-500 transition-colors cursor-pointer"
+                className="ml-1 text-muted hover:text-red-400 transition-colors cursor-pointer"
               >
                 <FiLogOut size={18} />
               </button>
@@ -80,10 +86,10 @@ function Navbar({ user, setUser }) {
         )}
 
         {user && (
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden text-gray-600 hover:text-purple-500 transition-colors"
-          >
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="md:hidden text-muted hover:text-main transition-colors"
+            >
             {menuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
           </button>
         )}
@@ -91,7 +97,7 @@ function Navbar({ user, setUser }) {
 
       {menuOpen && (
         <div className="md:hidden px-4 pb-4">
-          <div className="bg-white rounded-2xl border border-orange-100 shadow-lg p-4">
+          <div className="surface rounded-2xl border border-transparent shadow-lg p-4">
             <div className="flex items-center gap-3 pb-4 border-b border-orange-100">
               <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-emerald-500 flex items-center justify-center flex-shrink-0">
                 <span className="text-white text-sm font-bold">
@@ -100,17 +106,17 @@ function Navbar({ user, setUser }) {
               </div>
 
               <div className="flex-1 overflow-hidden">
-                <p className="text-sm font-semibold text-gray-800 truncate">
+                <p className="text-sm font-semibold text-main truncate">
                   {user.name}
                 </p>
 
-                <p className="text-xs text-gray-400 truncate">{user.email}</p>
+                <p className="text-xs text-muted truncate">{user.email}</p>
               </div>
             </div>
 
             <div className="flex flex-col gap-3 mt-4">
               <button
-                className="w-full py-2.5 rounded-xl bg-gradient-to-r from-purple-500 to-emerald-500 text-white text-sm font-medium"
+                className={`w-full py-2.5 rounded-xl text-sm font-medium ${isActive("/builder") ? "btn-primary" : "btn-secondary"}`}
                 onClick={() => {
                   navigate("/builder");
                   setMenuOpen(false);
@@ -119,7 +125,7 @@ function Navbar({ user, setUser }) {
                 Bulider
               </button>
               <button
-                className="w-full py-2.5 rounded-xl border border-orange-100 bg-white text-gray-700 text-sm font-medium"
+                className={`w-full py-2.5 rounded-xl text-sm font-medium ${isActive("/billing") ? "btn-primary" : "btn-secondary"}`}
                 onClick={() => {
                   navigate("/billing");
                   setMenuOpen(false);
