@@ -53,7 +53,7 @@
             <p class="delAi-sub">
                 Your smart voice assistant.
                 <br />
-                Ask anything about your website.
+                Ask anything about website.
             </p>
 
 
