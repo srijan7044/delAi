@@ -166,7 +166,7 @@ function Billing({ user, setUser }) {
           >
             <h2 className="text-2xl font-bold text-main">Pro Plan</h2>
 
-            <h3 className="text-5xl font-bold mt-5 text-main">₹699</h3>
+            <h3 className="text-5xl font-bold mt-5 text-main">₹399</h3>
 
             <p className="mt-2 opacity-80">3 Months Access</p>
 

@@ -9,7 +9,7 @@ export const createOrder = async (req, res) => {
     let amount = 0;
 
     if (plan === "pro") {
-      amount = 699;
+      amount = 399;
     }
 
     if (!amount) {
