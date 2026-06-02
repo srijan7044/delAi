@@ -156,7 +156,14 @@ function Billing({ user, setUser }) {
           </div>
           {/* 
          Pro */}
-          <div className="rounded-3xl p-8" style={{background: 'linear-gradient(90deg, rgba(14,165,164,0.12), rgba(37,99,235,0.12))', borderRadius: '20px'}}>
+          <div
+            className="rounded-3xl p-8"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(14,165,164,0.12), rgba(37,99,235,0.12))",
+              borderRadius: "20px",
+            }}
+          >
             <h2 className="text-2xl font-bold text-main">Pro Plan</h2>
 
             <h3 className="text-5xl font-bold mt-5 text-main">₹699</h3>

@@ -12,7 +12,9 @@ function Navbar({ user, setUser }) {
 
   const isActive = (path) => {
     if (!location || !location.pathname) return false;
-    return location.pathname === path || location.pathname.startsWith(path + "/");
+    return (
+      location.pathname === path || location.pathname.startsWith(path + "/")
+    );
   };
 
   const handleLogout = async () => {
@@ -86,10 +88,10 @@ function Navbar({ user, setUser }) {
         )}
 
         {user && (
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden text-muted hover:text-main transition-colors"
-            >
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden text-muted hover:text-main transition-colors"
+          >
             {menuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
           </button>
         )}
