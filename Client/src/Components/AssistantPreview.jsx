@@ -34,9 +34,9 @@ const themes = {
 
     cardBorder: "border border-[#dbeafe]",
 
-    text: "text-[#081028]",
+    text: "text-main",
 
-    sub: "text-[#475569]",
+    sub: "text-muted",
 
     listening: "text-blue-500",
 
