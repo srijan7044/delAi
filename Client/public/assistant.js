@@ -22,7 +22,7 @@
 
   link.rel = "stylesheet";
 
-  link.href = "http://localhost:5173/assistant.css";
+  link.href = "https://delai.onrender.com/assistant.css";
 
   document.head.appendChild(link);
 
@@ -86,7 +86,7 @@
             <button class="delAi-mic">
 
                <img 
-               src="http://localhost:5173/mic.svg"
+               src="https://delai.onrender.com/mic.svg"
                alt="mic"
                class="delAi-mic-icon"/>
             </button>
@@ -105,7 +105,7 @@
 
   button.innerHTML = `
     <img 
-    src="http://localhost:5173/logo.png"
+    src="https://delai.onrender.com/logo.png"
     alt="logo"
     />`;
   document.body.appendChild(button);
